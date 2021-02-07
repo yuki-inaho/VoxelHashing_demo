@@ -15,8 +15,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "-std=c++11 -fpermissive -w")
 set(OpenGL_GL_PREFERENCE "GLVND")
-#string(APPEND CMAKE_CUDA_FLAGS " -gencode arch=compute_61,code=sm_61 -w") #new laptop
-string(APPEND CMAKE_CUDA_FLAGS " -gencode arch=compute_30,code=sm_30 -w")  #old, main laptop
+string(APPEND CMAKE_CUDA_FLAGS " -gencode arch=compute_61,code=sm_61 -w") #new laptop
+#string(APPEND CMAKE_CUDA_FLAGS " -gencode arch=compute_30,code=sm_30 -w")  #old, main laptop
 #if( CMAKE_BUILD_TYPE MATCHES "Debug" )
 string( APPEND CMAKE_CUDA_FLAGS " -g -G" )  #TODO : Remove these 3 lines later
 string( APPEND CMAKE_CUDA_FLAGS " -lineinfo" )
@@ -60,7 +60,7 @@ target_link_libraries(SDFRenderer GladLib)
 
 add_library(ShaderProgram STATIC ShaderProgram.hpp)
 set_target_properties(ShaderProgram PROPERTIES LINKER_LANGUAGE CXX)
-target_link_libraries(ShaderProgram GladLib)
+target_link_libraries(ShaderProgram GladLib stdc++fs)
 
 
 add_library(Window STATIC Window.cpp)
@@ -101,6 +101,7 @@ target_link_libraries(Application SDFModule)
 target_link_libraries(Application SDFRenderer)
 target_link_libraries(Application Frustum)
 target_link_libraries(Application CameraTrackingUtils)
+target_link_libraries(Application stdc++fs)
 #target_link_libraries(Application IntegrationUtils)
 
 set(INCLUDE_DIRS  ${INCLUDE_DIRS} ${CUDA_INCLUDE_DIRS} ${CUHELPER_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIR} ${GLM_INCLUDE_DIR}

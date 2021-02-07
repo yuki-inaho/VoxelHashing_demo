@@ -27,14 +27,14 @@ Edited by nilspin - 19/3/2018.
   #include "opengl_linux.h"
 #endif
 
-#include<boost/filesystem.hpp>
-
+#include <experimental/filesystem>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <map>
 #include <vector>
 
+namespace fs = std::experimental::filesystem;
 
 class ShaderProgram
 {
@@ -86,9 +86,7 @@ private:
 		std::vector<GLuint> loadedShaders;
 		for(auto fileName:fileList)
 		{
-			/*We need boost for just this one line.
-			TODO: Replace with std::filesystem when compiler support is available*/
-			boost::filesystem::path fname{fileName};
+            fs::path fname{fileName};
 			std::string extension = fname.extension().string();
 			GLenum shaderType = shaderEnumMap.find(extension)->second;
 
