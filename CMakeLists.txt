@@ -119,10 +119,3 @@ add_executable(${PROJECT_NAME} ${SOURCES} ) #${HEADERS}
 
 #Link all obj files
 target_link_libraries(${PROJECT_NAME} ${LIBS} Application)  #SDL2::SDL2  CameraTrackingUtils
-
-#Now copy shaders to build directory
-
-add_custom_target(copy-runtime-files ALL
-    COMMAND cmake -E copy_directory ${CMAKE_SOURCE_DIR}/shaders ${CMAKE_BINARY_DIR}/shaders
-    COMMAND cmake -E copy_directory ${CMAKE_SOURCE_DIR}/assets ${CMAKE_BINARY_DIR}/assets
-    DEPENDS ${MY_TARGET})
